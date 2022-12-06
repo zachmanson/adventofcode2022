@@ -7,9 +7,3 @@ with open('input6.txt') as reader:
         if len(window) == len(set(window)):
             print(i + window_size)
             break
-
-
-            
-
-
-
