@@ -14,15 +14,15 @@ with open('input7.txt') as reader:
                 working_directory.append(words[2])
         pwd = '/'.join(working_directory) #full directory name, used as key for dicts
         if words[0] != '$' and words[0] != 'dir': # if we get a file size and name
-                size = int(words[0])
-                sizes[pwd] += size #add the file size to the pwd key
-                parent = '' #add this size to all parents
-                for dir_ in working_directory[:-1]:
-                    if dir_ == '/':
-                        parent += dir_
-                    else:
-                        parent +=  '/' + dir_  
-                    sizes[parent] += size
+            size = int(words[0])
+            sizes[pwd] += size #add the file size to the pwd key
+            parent = '' #add this size to all parents
+            for dir_ in working_directory[:-1]:
+                if dir_ == '/':
+                    parent += dir_
+                 else:
+                    parent +=  '/' + dir_  
+                sizes[parent] += size
         line = reader.readline().strip()
 
 ans = 0
