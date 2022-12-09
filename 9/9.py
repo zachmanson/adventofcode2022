@@ -6,9 +6,6 @@ with open('input9.txt') as reader:
 def dist(c1, c2):
     return np.sqrt((c2[0]-c1[0])**2 + (c2[1]-c1[1])**2)
 
-dir_H = {'U': (0, 1), 'R': (1, 0), 'D': (0, -1), 'L': (-1, 0)}
-dir_T = ((0, 0), (-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1))
-
 def find_best_move(A, B):
     move_B = (0, 0)
     min_dist = dist(A, B)
@@ -18,6 +15,9 @@ def find_best_move(A, B):
             min_dist = dist(temp, A)
             best_move = d
     return best_move
+
+dir_H = {'U': (0, 1), 'R': (1, 0), 'D': (0, -1), 'L': (-1, 0)}
+dir_T = ((0, 0), (-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1))
 
 T_coords = [(0, 0)]
 T9_coords = [(0, 0)]
