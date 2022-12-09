@@ -22,25 +22,23 @@ def find_best_move(A, B):
 T_coords = [(0, 0)]
 T9_coords = [(0, 0)]
 
-T, H = (0, 0), (0, 0)
-T9 = [(0, 0) for x in range(9)]
+H = (0, 0)
+T = [(0, 0) for x in range(9)]
 for line in lines:
     dir_, qty = line.split(' ')
     move_H = dir_H[dir_]
     for i in range(int(qty)): 
         H = tuple(sum(x) for x in zip(H, move_H))
-        dist_TH = dist(T, H) 
-        if dist_TH > np.sqrt(2):
-            move_T = find_best_move(H, T)
-            T = tuple(sum(x) for x in zip(T, move_T))
-            T_coords.append(T)
-            T9[0] = T
-        #could have put head and tail into single list, but wanted to split up part 1 and 2
-        for j in range(1, len(T9)):
+        for j in range(0, len(T)):
+            if j == 0:
+                prev = H
+            else:
+                prev = T[j-1]
             best_move = (0, 0)
-            if dist(T9[j-1], T9[j]) > np.sqrt(2):
-                best_move = find_best_move(T9[j-1], T9[j])
-            T9[j] = tuple(sum(x) for x in zip(T9[j], best_move))
-        T9_coords.append(T9[-1])
-print(len(set(T_coords))) #part 1
-print(len(set(T9_coords))) #part 2
+            if dist(prev, T[j]) > np.sqrt(2):
+                best_move = find_best_move(prev, T[j])
+            T[j] = tuple(sum(x) for x in zip(T[j], best_move))
+        T_coords.append(T[0])
+        T9_coords.append(T[-1])
+print(len(set(T_coords))) #6522
+print(len(set(T9_coords))) #2717
